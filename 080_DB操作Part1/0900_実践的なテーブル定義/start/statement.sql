@@ -35,38 +35,50 @@ drop table products;
 drop table shops;
 drop table prefs;
 
-create table products (
+create table mst_products (
   id int(10) unsigned auto_increment primary key,
-  name varchar(20) not null  
+  name varchar(20) not null,
+  delete_flg int(1) not null default 0,
+  updated_at timestamp default current_timestamp on update current_timestamp,
+  updated_by varchar(20) not null
 );
 
-create table prefs (
+create table mst_prefs (
   id int(2) unsigned auto_increment primary key,
   name varchar(10) not null
+  delete_flg int(1) not null default 0,
+  updated_at timestamp default current_timestamp on update current_timestamp,
+  updated_by varchar(20) not null
 );
 
-create table shops (
+create table mst_shops (
   id int(10) unsigned auto_increment primary key,
   name varchar(50) not null,
   pref_id int(2) unsigned not null,
+  delete_flg int(1) not null default 0,
+  updated_at timestamp default current_timestamp on update current_timestamp,
+  updated_by varchar(20) not null
   constraint fk_pref_id
     foreign key(pref_id)
-    references prefs (id)
+    references mst_prefs (id)
     on update cascade 
 );
 
-create table stocks (
+create table txn_stocks (
   product_id int unsigned,
   shop_id int unsigned,
   amount int unsigned not null,
+  delete_flg int(1) not null default 0,
+  updated_at timestamp default current_timestamp on update current_timestamp,
+  updated_by varchar(20) not null
   primary key (product_id, shop_id),
   constraint fk_product_id
     foreign key (product_id)
-    references products (id)
+    references mst_products (id)
     on update cascade,
   constraint fk_shop_id
     foreign key (shop_id)
-    references shops (id)
+    references mst_shops (id)
     on update cascade
 );
 
