@@ -8,6 +8,6 @@
 </head>
 <body>
     <h1>PHP TEST</h1>
-    <script src="main.js?v2"></script>
+    <script src="main.js?v1"></script>
 </body>
 </html>
