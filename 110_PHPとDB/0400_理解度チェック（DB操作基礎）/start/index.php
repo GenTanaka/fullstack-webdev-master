@@ -19,7 +19,10 @@ $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
  * 問１：
  * 店舗Cの全ての商品の在庫数に+10を足し合わせる
  */
-
+// $update_rows = $conn->exec("
+// update txn_stocks set amount = amount + 10;
+// ");
+// echo $update_rows;
 
 /**
  * 問２：
@@ -29,9 +32,17 @@ $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
  * name: '店舗D'
  * pref_id: 4
  */
-
+// $insert_rows = $conn->exec("
+// 	insert into test_phpdb.mst_shops(id,name,pref_id,updated_by) values (4,'店舗D',4,'GenTanaka');
+// ");
+// echo $insert_rows;
 /**
  * 問３：
  * 店舗Aの椅子の在庫数を取得してください。
  */
+$p_id = $conn->query("
+select id from mst_products mp
+where mp.name = '椅子'
+");
 
+echo $p_id->fetchAll()[0]["id"];

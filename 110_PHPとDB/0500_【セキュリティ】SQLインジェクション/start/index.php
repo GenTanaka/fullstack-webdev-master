@@ -20,7 +20,9 @@ if(isset($_POST['shop_id'])) {
     $conn = new PDO($dsn, $user, $pwd);
     $conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $pst = $conn->query("select * from test_phpdb.mst_shops where id = {$shop_id};");
+    $pst = $conn->prepare("select * from test_phpdb.mst_shops where id = :id;");
+    $pst->bindValue(':id',$shop_id,PDO::PARAM_INT);
+    $pst->execute();
     
     $result = $pst->fetch();
 
@@ -28,4 +30,4 @@ if(isset($_POST['shop_id'])) {
         echo "店舗名は[{$result['name']}]です。";
     }
 }
- ?>
+?>
