@@ -11,8 +11,10 @@
 
 <?php
 require_once 'datasource.php';
+require_once 'product.model.php';
 
 use db\DataSource;
+use model\ProductModel;
 
 if(isset($_POST['product_id'])) {
     try {
@@ -23,10 +25,12 @@ if(isset($_POST['product_id'])) {
 
         $result = $db->selectOne('
             select * from mst_products where id = :id and delete_flg <> 1;
-        ', [':id' => $product_id]);
+        ', [':id' => $product_id], DataSource::CLS, ProductModel::class);
+
+        var_dump($result);
 
         if(!empty($result)) {
-            echo "商品名は[{$result['name']}]です。";
+            echo "商品名は[{$result->name}]です。";
         } else {
             echo '一致する商品が見つかりません。';
         }
