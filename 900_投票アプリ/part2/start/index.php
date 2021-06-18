@@ -9,6 +9,9 @@ require_once SOURCE_BASE . 'libs/auth.php';
 require_once SOURCE_BASE . 'models/abstract.model.php';
 require_once SOURCE_BASE . 'models/user.model.php';
 
+// Message
+require_once SOURCE_BASE . 'libs/massage.php';
+
 // DB
 require_once SOURCE_BASE . 'db/datasource.php';
 require_once SOURCE_BASE . 'db/user.query.php';

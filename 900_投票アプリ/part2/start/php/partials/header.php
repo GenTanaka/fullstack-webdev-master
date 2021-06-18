@@ -10,6 +10,9 @@
 <body>
     <?php 
     use libs\Auth;
+    use libs\Msg;
+
+    Msg::flush();
 
     if(Auth::isLogin()){
         echo 'ログイン中です。';

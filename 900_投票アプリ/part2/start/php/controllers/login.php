@@ -2,6 +2,7 @@
 namespace controller\login;
 
 use libs\Auth;
+use libs\Msg;
 
 function get() {
     require_once SOURCE_BASE . 'views/login.php';
@@ -12,10 +13,10 @@ function post() {
     $pwd = get_param('pwd','');
 
     if (Auth::login($id,$pwd)) {
-        echo '認証成功';
+        MSG::push(MSG::INFO,'認証成功');
         redirect(GO_HOME);
     } else {
-        echo '認証失敗';
+        MSG::push(MSG::ERROR,'認証成功');
         redirect(GO_REFERER);
     }
 }
