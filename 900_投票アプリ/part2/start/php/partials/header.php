@@ -8,9 +8,9 @@
     <!-- <link rel="stylesheet" href="<?php echo BASE_CSS_PATH ?>sample.css"> -->
 </head>
 <body>
-    <?php 
-    use libs\Auth;
-    use libs\Msg;
+    <?php
+    use lib\Auth;
+    use lib\Msg;
 
     Msg::flush();
 

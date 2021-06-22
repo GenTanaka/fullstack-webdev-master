@@ -1,8 +1,8 @@
-<?php 
+<?php
 namespace controller\login;
 
-use libs\Auth;
-use libs\Msg;
+use lib\Auth;
+use lib\Msg;
 
 function get() {
     require_once SOURCE_BASE . 'views/login.php';
